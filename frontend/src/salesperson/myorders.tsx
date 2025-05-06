@@ -166,7 +166,7 @@ const UserOrdersPage: React.FC = () => {
                         className="list-group-item d-flex justify-content-between align-items-center"
                       >
                         <div>
-                          <strong>{item.product?.name || "Unknown Product"}</strong>
+                          <strong>{item.product?.name }</strong>
                           Quantity: {item.quantity} * ₹{item.price}
                         </div>
                         <span>Subtotal: ₹{item.subtotal}</span>
@@ -174,7 +174,6 @@ const UserOrdersPage: React.FC = () => {
                     ))}
                   </ul>
 
-                  {/* Move Total Amount to the Bottom of the Card */}
                   <div className="mt-auto">
                     <h6 className="card-footer">
                       <strong>Total Amount:</strong> ₹{Number(order.total_amount).toFixed(2)}

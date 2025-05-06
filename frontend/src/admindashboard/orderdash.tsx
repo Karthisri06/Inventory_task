@@ -39,7 +39,7 @@ const AdminOrders: React.FC = () => {
 
       const allOrders = res.data
         .flatMap((entry: any) => entry.orders)
-        .filter((order: Order) => order.status !== "Canceled");
+        // .filter((order: Order) => order.status !== "Canceled");
   
       console.log("Filtered orders:", allOrders);
       setOrders(allOrders);
@@ -86,7 +86,7 @@ const AdminOrders: React.FC = () => {
     }
   };
 
-  if (loading) return <Spinner animation="border" className="mt-4" />;
+  // if (loading) return <Spinner animation="border" className="mt-4" />;
 
   return (
     <div className="d-flex">

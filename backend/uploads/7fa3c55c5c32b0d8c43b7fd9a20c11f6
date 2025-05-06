@@ -1,0 +1,22 @@
+id,name,category,sku,price,quantity,brand,image_url
+,,,,,,,
+,,,,,,,
+67,Modern Sofa,Furniture,Sofa001,599.99,30,HomeStyle,https://images.unsplash.com/photo-1587410509224-0dbff0f8a31c
+68,Adjustable Dining Table,Furniture,Table001,399.99,20,LivingSpace,https://images.unsplash.com/photo-1562691500-5f3c93e40b6e
+69,Cozy Area Rug,Home Decor,Rug001,149.99,100,RugCo,https://images.unsplash.com/photo-1579653073959-40736e7f28b7
+70,Pendant Lighting Fixture,Lighting,Light001,129.99,50,BrightLights,https://images.unsplash.com/photo-1591064163173-d98d45e3f688
+71,Wall Art - Abstract,Home Decor,Art001,89.99,75,ArtisticHome,https://images.unsplash.com/photo-1583946476847-97397ca0f8b6
+72,Table Lamp - Ceramic Base,Lighting,Lamp001,49.99,150,LuxeLighting,https://images.unsplash.com/photo-1560807707-8cc77767d783
+73,Folding Bookshelf,Furniture,Shelf001,79.99,120,SpaceSaver,https://images.unsplash.com/photo-1596547410030-69a05bc64ab7
+74,Stainless Steel Cookware Set,Kitchen,Cookware001,199.99,80,KitchenPro,https://images.unsplash.com/photo-1568434674-d67e4539b62d
+75,Decorative Throw Pillow,Home Decor,Pillow001,29.99,200,ComfyHome,https://images.unsplash.com/photo-1552673413-5869293853f3
+76,Indoor Plant - Fiddle Leaf Fig,Home Decor,Plant001,59.99,150,GreenThumb,https://images.unsplash.com/photo-1570060380677-19c1b5c5a3d0
+77,Smart Thermostat,Electronics,Thermo001,129.99,90,TechHome,https://images.unsplash.com/photo-1571682735990-7cf4ff76c2b0
+78,Wall Mirror - Oval,Home Decor,Mirror001,99.99,60,MirrorStyle,https://images.unsplash.com/photo-1601408926401-6ffb4deff87e
+79,Luxury Bed Set - King Size,Bedding,Bed001,249.99,50,SleepWell,https://images.unsplash.com/photo-1582286358246-88c35e059ac3
+80,Wooden Coffee Table,Furniture,Table002,149.99,100,WoodWorks,https://images.unsplash.com/photo-1550748321-9a6d3a55f46c
+81,Storage Bench - Entryway,Furniture,Bench001,99.99,80,OrganizeMe,https://images.unsplash.com/photo-1579267490722-94a1d476a022
+82,Wall Clock - Vintage,Home Decor,Clock001,49.99,200,Timeless,https://images.unsplash.com/photo-1517175364389-d0c8c9f9b2ad
+83,Electric Kettle - Stainless Steel,Kitchen,Kettle001,39.99,180,KitchenEssentials,https://images.unsplash.com/photo-1600322247172-75d05d2567b1
+84,Decorative Vase - Ceramic,Home Decor,Vase001,39.99,250,HomeDecorCo,https://images.unsplash.com/photo-1600585154315-b3f0ad197da7
+85,Recliner Chair - Leather,Furniture,Chair001,399.99,60,RelaxSeating,https://images.unsplash.com/photo-1600380723838-107232028e8d

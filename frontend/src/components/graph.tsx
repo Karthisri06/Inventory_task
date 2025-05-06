@@ -4,7 +4,7 @@ import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Container, Spinner, Alert } from "react-bootstrap";
 
-// Register Chart.js parts
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Order {
@@ -38,7 +38,7 @@ const OrdersChart: React.FC = () => {
   }, []);
 
   const getStatusCounts = () => {
-    const counts = { Pending: 0, Processed: 0, Cancelled: 0 };
+    const counts = { Pending: 0, Processed: 0, Canceled: 0 };
 
     orders.forEach((order) => {
       if (counts.hasOwnProperty(order.status)) {
@@ -52,15 +52,15 @@ const OrdersChart: React.FC = () => {
   const statusCounts = getStatusCounts();
 
   const chartData = {
-    labels: ["Pending", "Processed", "Cancelled"],
+    labels: ["Pending", "Processed", "Canceled"],
     datasets: [
       {
         data: [
           statusCounts.Pending,
           statusCounts.Processed,
-          statusCounts.Cancelled,
+          statusCounts.Canceled,
         ],
-        backgroundColor: ["#FFCD56", "#36A2EB", "#FF6384"],
+        backgroundColor: ["#F6C85F", "#4E79A7", "#E15759"],
         hoverOffset: 4,
       },
     ],

@@ -146,7 +146,7 @@ const ProductTable: React.FC = () => {
           <h3 className="mb-4 text-center">Product Management</h3>
 
           <div style={{ maxWidth: "1200px", width: "100%" }}>
-            {/* Product Form */}
+      
             <div className="mb-4">
               <div className="card shadow-sm">
                 <div className="card-header bg-dark text-white">
@@ -209,7 +209,7 @@ const ProductTable: React.FC = () => {
                           onChange={(e) => setNewProduct({ ...newProduct, sku: e.target.value })}
                         />
                       </div>
-                      <div className="col-md-12 mb-3">
+                      <div className="col-md-12 mb-3 mx-auto">
                       <Form.Label>Image URL</Form.Label>
                       <Form.Control
                         type="text"
