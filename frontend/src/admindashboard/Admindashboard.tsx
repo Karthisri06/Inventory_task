@@ -1,5 +1,4 @@
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBox, faChartBar } from '@fortawesome/free-solid-svg-icons'; 
  import Sidebar from '../components/sidebar';

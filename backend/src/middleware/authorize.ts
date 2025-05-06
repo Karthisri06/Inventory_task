@@ -29,14 +29,14 @@ export const authorizeAdminMiddleware = async(
 
             const user=(req as any).user;
             if (user.role === "Admin") {
-              console.log(" Admin access granted");
+           
               next();
             } else {
               console.log(" Access denied");
               res.status(403).json({ message: "Access denied. Admins only." });
             }
           } catch (e) {
-            console.log("Token verification failed:", e);
+  
             res.status(401).json({ message: "Invalid or expired token" });
           }
   };

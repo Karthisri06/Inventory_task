@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Sidebarsales from '../components/sidebarSales';
-import NavbarSales from '../components/navbarSales';
-import { Bar } from 'react-chartjs-2';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Sidebarsales from "../components/sidebarSales";
+import NavbarSales from "../components/navbarSales";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,10 +10,17 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend
-} from 'chart.js';
+  Legend,
+} from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 interface Order {
   id: number;
@@ -54,16 +61,16 @@ const SalesDashboard = () => {
   }, [token]);
 
   const totalOrders = orders.length;
-  const pendingOrders = orders.filter(o => o.status === "Pending").length;
-  const completedOrders = orders.filter(o => o.status === "Processed").length;
+  const pendingOrders = orders.filter((o) => o.status === "Pending").length;
+  const completedOrders = orders.filter((o) => o.status === "Processed").length;
 
   const chartData = {
-    labels: ['Total Orders', 'Pending Orders', 'Completed Orders'],
+    labels: ["Total Orders", "Pending Orders", "Completed Orders"],
     datasets: [
       {
-        label: 'Order Stats',
+        label: "Order Stats",
         data: [totalOrders, pendingOrders, completedOrders],
-        backgroundColor: ['#007bff', '#ffc107', '#28a745'],
+        backgroundColor: ["#007bff", "#ffc107", "#28a745"],
       },
     ],
   };
@@ -72,7 +79,7 @@ const SalesDashboard = () => {
     responsive: true,
     plugins: {
       legend: { display: false },
-      title: { display: true, text: 'Your Order Summary' },
+      title: { display: true, text: "Your Order Summary" },
     },
   };
 
@@ -83,22 +90,37 @@ const SalesDashboard = () => {
       </div>
 
       <div className="flex-grow-1 d-flex flex-column">
-        <NavbarSales user={{ name: "Karthisri", role: localStorage.getItem("role") || "Salesperson" }} />
+        <NavbarSales
+          user={{
+            name: "Karthisri",
+            role: localStorage.getItem("role") || "Salesperson",
+          }}
+        />
 
         <div className="container mt-4">
-    
-
           {loading ? (
             <p>Loading dashboard...</p>
           ) : error ? (
-            <p style={{ color: 'red' }}>{error}</p>
+            <p style={{ color: "red" }}>{error}</p>
           ) : (
             <>
               <div className="row mt-4">
                 {[
-                  { label: 'Total Orders', value: totalOrders, color: 'primary' },
-                  { label: 'Pending Orders', value: pendingOrders, color: 'warning' },
-                  { label: 'Completed Orders', value: completedOrders, color: 'success' },
+                  {
+                    label: "Total Orders",
+                    value: totalOrders,
+                    color: "primary",
+                  },
+                  {
+                    label: "Pending Orders",
+                    value: pendingOrders,
+                    color: "warning",
+                  },
+                  {
+                    label: "Completed Orders",
+                    value: completedOrders,
+                    color: "success",
+                  },
                 ].map((item, num) => (
                   <div key={num} className="col-md-4 mb-3">
                     <div className={`card border-${item.color}`}>
@@ -112,10 +134,10 @@ const SalesDashboard = () => {
               </div>
 
               <div className="mt-5 d-flex justify-content-center">
-  <div style={{ width: '500px', height: '300px' }}>
-    <Bar data={chartData} options={chartOptions} />
-  </div>
-</div>
+                <div style={{ width: "500px", height: "300px" }}>
+                  <Bar data={chartData} options={chartOptions} />
+                </div>
+              </div>
             </>
           )}
         </div>
@@ -125,7 +147,3 @@ const SalesDashboard = () => {
 };
 
 export default SalesDashboard;
-
-
-
-

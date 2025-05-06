@@ -10,7 +10,6 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 interface Order {
@@ -42,7 +41,7 @@ const OrdersChart = () => {
     fetchOrders();
   }, [token]);
 
-  // Prepare data for chart
+
   const chartData = {
     labels: orders.map((order) => order.store),
     datasets: [
@@ -78,7 +77,7 @@ const OrdersChart = () => {
           data={chartData}
           options={{
             responsive: true,
-            maintainAspectRatio: false, // This is critical
+            maintainAspectRatio: false, 
             plugins: {
               legend: {
                 position: "top" as const,

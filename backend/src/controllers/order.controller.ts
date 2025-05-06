@@ -91,11 +91,9 @@ export const getAllOrders = async (req: Request, res: Response):Promise<void> =>
 export const getUserOrders = async (req:Request,res:Response) =>{
     try{
         const userId =(req as any).user.id;
-        console.log("User Id for token:",userId)
         const orders = await OrderService.getUserOrders(userId);
         res.json(orders);
     }catch(error){
-        console.log("fatching users error:",error)
         res.status(500).json({message:"could not fetch user Orders",error})
         return
     }
@@ -128,7 +126,6 @@ export const getAllUserOrders = async(req:Request,res:Response) =>{
         const groupedOrders =await OrderService.getAllUserOrders();
         res.status(200).json(groupedOrders);
     }catch(error:any){
-        console.log("orders fetching error:",error)
         res.status(500).json({
             message:"cant fetch orders",
             error:error.message ||"unknown error"})

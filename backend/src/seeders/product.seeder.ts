@@ -80,13 +80,11 @@ export const seedProducts = async () => {
     }
   }
 
-  console.log(" Seeded home supplies products successfully!");
 };
 
 
 seedProducts()
   .then(() => {
-    console.log("Seeding completed!");
     process.exit(0);
   })
   .catch((error) => {

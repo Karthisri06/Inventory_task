@@ -13,12 +13,11 @@ const userRepository = AppDataSource.getRepository(User);
 export const Register=async(req:Request,res:Response):Promise<void> =>{
     try {
         const{name,email,password,store,role}=req.body;
-        console.log("--->",name, email,password)
         const registeredUser= await UserRegister (name,email,password,store,role)
         res.status(200).json({message: "User registered successfully",data: registeredUser})
 
     }catch(e){
-        console.log("error",e)
+        console.error(e)
         res.status(500).json({message:'Registration failed',
           error:"Registration failed"
         })

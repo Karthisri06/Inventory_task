@@ -33,15 +33,13 @@ const AdminOrders: React.FC = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-  
-      console.log("Full response data:", res.data);
+
   
 
       const allOrders = res.data
         .flatMap((entry: any) => entry.orders)
         // .filter((order: Order) => order.status !== "Canceled");
   
-      console.log("Filtered orders:", allOrders);
       setOrders(allOrders);
     } catch (err) {
       console.error(err);
@@ -86,7 +84,7 @@ const AdminOrders: React.FC = () => {
     }
   };
 
-  // if (loading) return <Spinner animation="border" className="mt-4" />;
+  if (loading) return <Spinner animation="border" className="mt-4" />;
 
   return (
     <div className="d-flex">
