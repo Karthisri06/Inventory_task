@@ -127,7 +127,7 @@ const AdminOrders: React.FC = () => {
                     <Form.Select
                       value={order.status}
                       onChange={(e) => updateStatus(order.id, e.target.value)}
-                      disabled={updatingOrderId === order.id}
+                      disabled={order.status !=="Pending" || updatingOrderId === order.id}
                     >
                       {statusOptions.map((status) => (
                         <option key={status} value={status}>

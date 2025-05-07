@@ -36,8 +36,8 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
         if (user.role === "Admin") {
           
           messages = orders
-            .filter((order: any) => order.status === 'Pending') // Show only pending orders for Admin
-            .map((order: any) => `New Order #${order.id} placed.`);
+            .filter((order: any) => order.status === 'Pending') 
+            .map((order: any) => `New Order from ${order.user?.name}`);
         }
 
         setNotifications(messages);

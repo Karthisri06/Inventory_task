@@ -110,6 +110,7 @@ const SalesDashboard = () => {
                     label: "Total Orders",
                     value: totalOrders,
                     color: "primary",
+
                   },
                   {
                     label: "Pending Orders",
@@ -122,8 +123,9 @@ const SalesDashboard = () => {
                     color: "success",
                   },
                 ].map((item, num) => (
-                  <div key={num} className="col-md-4 mb-3">
-                    <div className={`card border-${item.color}`}>
+                  <div key={num} 
+                  className="col-md-4 mb-3">
+                    <div className={`card bg-${item.color}`}>
                       <div className="card-body">
                         <h5 className="card-title">{item.label}</h5>
                         <p className="card-text fs-4">{item.value}</p>

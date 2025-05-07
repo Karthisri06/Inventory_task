@@ -32,7 +32,7 @@ const OrdersChart = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         const allOrders = response.data.flatMap((entry: any) => entry.orders);
-        setOrders(allOrders.slice(-6)); // Last 6 orders
+        setOrders(allOrders.slice(0,6)); 
       } catch (error) {
         console.error("Error fetching orders:", error);
       }

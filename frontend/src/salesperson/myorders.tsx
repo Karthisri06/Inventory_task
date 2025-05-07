@@ -63,7 +63,7 @@ const UserOrdersPage: React.FC = () => {
         return "warning";
       case "Processed":
         return "success"; 
-      case "Cancelled":
+      case "Canceled":
         return "danger"; 
       default:
         return "secondary"; 

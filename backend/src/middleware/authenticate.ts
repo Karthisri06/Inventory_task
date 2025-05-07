@@ -44,7 +44,7 @@ export const registerMiddleware = async(
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOneBy({ email });
   
-    if (!user) {
+    if (!user) { 
       res.status(404).json({ message: "User not found" });
       return;
     }

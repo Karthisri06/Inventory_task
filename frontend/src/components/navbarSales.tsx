@@ -9,9 +9,9 @@ const NavbarSales: React.FC = () => {
   const [notifications, setNotifications] = useState<string[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // Fetch the user from localStorage
+  
   const storedUser = localStorage.getItem('user');
-  let user = { name: '', role: '' };  // Default empty user
+  let user = { name: '', role: '' };  
   if (storedUser) {
     try {
       user = JSON.parse(storedUser);
