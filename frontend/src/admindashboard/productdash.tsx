@@ -281,7 +281,15 @@ const ProductTable: React.FC = () => {
                 <p className="card-text-mb-1"><strong>Category:</strong>{prod.category}</p>
                 <p className="card-text-mb-1"><strong>Price</strong> ₹{Number(prod.price).toFixed(2)}</p>
                 <p className="card-text-mb-1"><strong>SKU:</strong> {prod.sku}</p>
-                <p className="card-text mb-1"><strong>Quantity:</strong> {prod.quantity}</p>
+                <p className="card-text mb-1"><strong>Quantity:</strong> 
+                {prod.quantity ===0?(
+                  <span className="text-danger fw-semibold">
+                    0(Out of Stock)
+                  </span>
+                ):(
+                  prod.quantity
+                )}
+                </p>
                 <p className="card-text mb-3"><strong>Brand:</strong> {prod.brand}</p>
 
                 <div className="d-flex justify-content-end gap-2">

@@ -3,9 +3,10 @@ import axios from "axios";
 import { Table, Container, Spinner, Alert, Form } from "react-bootstrap";
 import Sidebar from "../components/sidebar";
 import Navbar from "../components/navbar";
+import { BsCheckCircleFill, BsXCircleFill, BsHourglassSplit } from "react-icons/bs";
+
 
 interface Order {
- 
   user: any;
   store: string;
   id: number;
@@ -34,12 +35,7 @@ const AdminOrders: React.FC = () => {
         },
       });
 
-  
-
-      const allOrders = res.data
-        .flatMap((entry: any) => entry.orders)
-        // .filter((order: Order) => order.status !== "Canceled");
-  
+      const allOrders = res.data.flatMap((entry: any) => entry.orders);
       setOrders(allOrders);
     } catch (err) {
       console.error(err);
@@ -49,19 +45,18 @@ const AdminOrders: React.FC = () => {
     }
   };
 
-  const getStatusClass = (status: string) => {
+  const getStatusStyle = (status: string) => {
     switch (status) {
       case "Pending":
-        return "text-warning fw-bold";
+        return { icon: <BsHourglassSplit color="#ffc107" />, text: "Pending" };
       case "Processed":
-        return "text-success fw-bold";
+        return { icon: <BsCheckCircleFill color="#28a745" />, text: "Processed" };
       case "Canceled":
-        return "text-danger fw-bold"; 
+        return { icon: <BsXCircleFill color="#dc3545" />, text: "Canceled" };
       default:
-        return "";
+        return { icon: null, text: status };
     }
   };
-  
   
 
   const updateStatus = async (orderId: number, newStatus: string) => {
@@ -87,20 +82,43 @@ const AdminOrders: React.FC = () => {
   if (loading) return <Spinner animation="border" className="mt-4" />;
 
   return (
-    <div className="d-flex">
-      <div style={{ width: "250px" }}>
+    <div className="d-flex" style={{ height: "100vh", overflow: "hidden" }}>
+      {/* Sidebar - fixed left */}
+      <div
+        style={{
+          width: "250px",
+          backgroundColor: "#343a40",
+          color: "#fff",
+          height: "100vh",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: 1000,
+        }}
+      >
         <Sidebar />
       </div>
 
-      <div className="flex-grow-1 d-flex flex-column">
-        <Navbar
-          user={{
-            name: "Karthisri",
-            role: localStorage.getItem("role") || "Admin",
-          }}
-        />
+      {/* Main content area */}
+      <div
+        className="flex-grow-1 d-flex flex-column"
+        style={{ marginLeft: "250px", height: "100vh", overflow: "hidden" }}
+      >
+        {/* Navbar - fixed top */}
+        <div style={{ position: "sticky", top: 0, zIndex: 1030 }}>
+          <Navbar
+            user={{
+              name: "Karthisri",
+              role: localStorage.getItem("role") || "Admin",
+            }}
+          />
+        </div>
 
-        <Container className="mt-5">
+        {/* Scrollable content */}
+        <div
+          className="flex-grow-1 overflow-auto p-4"
+          style={{ backgroundColor: "#f8f9fa" }}
+        >
           <h2 className="mb-4">Manage Orders</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Table striped bordered hover responsive>
@@ -121,13 +139,15 @@ const AdminOrders: React.FC = () => {
                   <td>{order.store}</td>
                   <td>{order.id}</td>
                   <td>₹{order.total_amount}</td>
-                  <td className={getStatusClass(order.status)}>{order.status}</td>
-
+                  <td className="fw-bold d-flex align-items-center gap-2">
+  {getStatusStyle(order.status).icon}
+  {getStatusStyle(order.status).text}
+</td>
                   <td>
                     <Form.Select
                       value={order.status}
                       onChange={(e) => updateStatus(order.id, e.target.value)}
-                      disabled={order.status !=="Pending" || updatingOrderId === order.id}
+                      disabled={order.status !== "Pending" || updatingOrderId === order.id}
                     >
                       {statusOptions.map((status) => (
                         <option key={status} value={status}>
@@ -140,7 +160,7 @@ const AdminOrders: React.FC = () => {
               ))}
             </tbody>
           </Table>
-        </Container>
+        </div>
       </div>
     </div>
   );

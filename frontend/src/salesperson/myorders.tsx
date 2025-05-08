@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Sidebarsales from "../components/sidebarSales";
 import NavbarSales from "../components/navbarSales";
+import { BsCheckCircleFill, BsXCircleFill, BsHourglassSplit } from "react-icons/bs";
+
 
 interface Product {
   id: number;
@@ -10,6 +12,7 @@ interface Product {
 }
 
 interface OrderItem {
+  name: string;
   id: number;
   quantity: number;
   price: number;
@@ -149,30 +152,35 @@ const UserOrdersPage: React.FC = () => {
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">Order - {order.id}</h5>
                   <p>
-                    <strong>Status: </strong>
-                    <span className={`badge bg-${getStatusColor(order.status)}`}>
-                      {order.status}
-                    </span>
-                  </p>
+  <strong>Status: </strong>
+  <span className={`badge bg-${getStatusColor(order.status)} d-inline-flex align-items-center gap-2`}>
+    {order.status === "Processed" && <BsCheckCircleFill />}
+    {order.status === "Canceled" && <BsXCircleFill />}
+    {order.status === "Pending" && <BsHourglassSplit />}
+    {order.status}
+  </span>
+</p>
+
                   <p>
                     <strong>Date:</strong> {new Date(order.created_at).toLocaleString()}
                   </p>
 
                   <h6>Items:</h6>
                   <ul className="list-group">
-                    {order.items.map((item) => (
-                      <li
-                        key={item.id}
-                        className="list-group-item d-flex justify-content-between align-items-center"
-                      >
-                        <div>
-                          <strong>{item.product?.name }</strong>
-                          Quantity: {item.quantity} * ₹{item.price}
-                        </div>
-                        <span>Subtotal: ₹{item.subtotal}</span>
-                      </li>
-                    ))}
-                  </ul>
+  {order.items.map((item, index) => (
+    <li
+      key={index}
+      className="list-group-item d-flex justify-content-between align-items-center"
+    >
+      <div>
+        <strong>{item.name}</strong><br />
+        Quantity: {item.quantity} * ₹{item.price}
+      </div>
+      <span>Subtotal: ₹{item.subtotal}</span>
+    </li>
+  ))}
+</ul>
+
 
                   <div className="mt-auto">
                     <h6 className="card-footer">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";  // Import SweetAlert2
 import NavbarSales from "../components/navbarSales";
 import Sidebarsales from "../components/sidebarSales";
 
@@ -49,7 +50,11 @@ const SalespersonOrderPage = () => {
   const handleQuantityChange = (productId: number, qty: number) => {
     const maxQuantity = products.find((p) => p.id === productId)?.quantity || 0;
     if (qty > maxQuantity) {
-      alert(`Quantity cannot exceed the available stock of ${maxQuantity}`);
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+        text: `Quantity cannot exceed the available stock of ${maxQuantity}`,
+      });
       qty = maxQuantity;
     }
 
@@ -74,7 +79,11 @@ const SalespersonOrderPage = () => {
       });
 
     if (items.length === 0) {
-      alert("Select at least one product with quantity");
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Select at least one product with quantity",
+      });
       return;
     }
 
@@ -99,14 +108,23 @@ const SalespersonOrderPage = () => {
         }
       );
 
-      alert("Order placed successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Order Placed",
+        text: "Your order has been successfully placed!",
+      });
+
       setOrderItems({});
       setReviewItems([]);
       setReviewTotal(0);
       setShowReview(false);
       fetchProducts();
     } catch (error) {
-      alert("Failed to place order");
+      Swal.fire({
+        icon: "error",
+        title: "Order Failed",
+        text: "There was an error while placing the order. Please try again.",
+      });
       console.error(error);
     }
   };
@@ -222,7 +240,7 @@ const SalespersonOrderPage = () => {
                         />
                       ) : (
                         <div className="text-danger mt-auto fw-bold">
-                          Not in stock
+                          Not Available for now 
                         </div>
                       )}
                     </div>
@@ -267,6 +285,7 @@ const SalespersonOrderPage = () => {
 };
 
 export default SalespersonOrderPage;
+
 
 // import { useEffect, useState } from "react";
 // import axios from "axios";

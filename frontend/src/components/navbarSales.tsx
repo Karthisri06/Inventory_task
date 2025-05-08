@@ -1,17 +1,22 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { FaUserCircle, FaBell } from 'react-icons/fa';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const NavbarSales: React.FC = () => {
-  const [notifications, setNotifications] = useState<string[]>([]);
-  const [showDropdown, setShowDropdown] = useState(false);
+interface Notification {
+  id: number;
+  message: string;
+}
 
-  
+const NavbarSales: React.FC = () => {
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
+
   const storedUser = localStorage.getItem('user');
-  let user = { name: '', role: '' };  
+  let user = { name: '', role: '' };
+
   if (storedUser) {
     try {
       user = JSON.parse(storedUser);
@@ -31,20 +36,21 @@ const NavbarSales: React.FC = () => {
         });
         const orders = res.data;
 
-        let messages: string[] = [];
-
+        const messages: Notification[] = orders
+        .filter((order: any) => order.status === 'Processed' || order.status === 'Cancelled')
+        .map((order: any) => {
+          const productNames = order.items?.map((item: any) => item.name || item.productName).join(", ");
+          const message = order.status === 'Processed'
+            ? `Your order with (${productNames}) has been processed.`
+            : `Your order with (${productNames}) was cancelled.`;
       
-        messages = orders.map((order: any) => {
-          if (order.status === 'Processed') {
-            return ` Your Order #${order.id} has been processed.`;
+          return {
+            id: order.id,
+            message,
+          };
+        });
+      
 
-          } else if (order.status === 'Cancelled') {
-            return `Your Order #${order.id} was cancelled.`;
-          } else {
-            return null; 
-          }
-        }).filter(Boolean);
-        
         setNotifications(messages);
       } catch (error) {
         console.error('Failed to fetch notifications', error);
@@ -57,7 +63,7 @@ const NavbarSales: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark px-4 justify-content-end" style={{ backgroundColor: '#2D2D2D' }}>
       <div className="d-flex align-items-center text-white">
-
+        {/* Notification Bell */}
         <div className="me-3 position-relative">
           <button
             type="button"
@@ -90,8 +96,13 @@ const NavbarSales: React.FC = () => {
                   <li className="list-group-item">No new notifications</li>
                 ) : (
                   notifications.map((notification, index) => (
-                    <li key={index} className="list-group-item">
-                      {notification}
+                    <li
+                      key={index}
+                      className="list-group-item list-group-item-action"
+                      onClick={() => navigate('/sp/history')}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {notification.message}
                     </li>
                   ))
                 )}
@@ -99,6 +110,8 @@ const NavbarSales: React.FC = () => {
             </div>
           )}
         </div>
+
+        {/* User Info */}
         <div className="d-flex align-items-center">
           <FaUserCircle size={30} className="text-white" />
           <div className="ms-2 text-white">

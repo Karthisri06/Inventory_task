@@ -12,9 +12,8 @@ describe("UserRegister", () => {
   let createMock: jest.Mock;
 
   beforeAll(() => {
-    // Mock AppDataSource.getRepository to return a mock repository with mocked methods
-    createMock = jest.fn().mockReturnValue({});  // Mock create method
-    saveMock = jest.fn().mockResolvedValue({});   // Mock save method
+    createMock = jest.fn().mockReturnValue({});  
+    saveMock = jest.fn().mockResolvedValue({});   
 
     (AppDataSource.getRepository as jest.Mock).mockReturnValue({
       create: createMock,

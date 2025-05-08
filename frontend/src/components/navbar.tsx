@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { FaUserCircle, FaBell } from 'react-icons/fa';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
 
 interface User {
   name: string;
@@ -16,6 +17,7 @@ type NavbarProps = {
 const Navbar: React.FC<NavbarProps> = ({ user }) => {
   const [notifications, setNotifications] = useState<string[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -85,7 +87,15 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
                   <li className="list-group-item">No new notifications</li>
                 ) : (
                   notifications.map((msg, i) => (
-                    <li key={i} className="list-group-item small">{msg}</li>
+                    <li
+                    key={i}
+                    className="list-group-item small list-group-item-action"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => navigate("/admin/order")}
+                    >
+                    {msg}
+                  </li>
+                  
                   ))
                 )}
               </ul>

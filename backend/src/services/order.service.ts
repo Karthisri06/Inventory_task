@@ -68,12 +68,24 @@ export const getAllOrders = async ()=>{
 
 };
 
+// export const getUserOrders = async (userId: number) => {
+//   return await orderRepo.find({
+//     where: { user: { id: userId } },
+//     relations: [ "user"],
+//     order: { created_at: "DESC" },
+//   });
+// };
+
+
 export const getUserOrders = async (userId: number) => {
-  return await orderRepo.find({
+  const orderRepo = AppDataSource.getRepository(Order);
+
+  const orders = await orderRepo.find({
     where: { user: { id: userId } },
-    relations: [ "user"],
-    order: { created_at: "DESC" },
+    order: { created_at: 'DESC' }
   });
+
+  return orders;
 };
 
 
